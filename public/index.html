@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>vue-r4-one</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but vue-r4-one doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+        <title>vue-r4-one</title>
+    </head>
+    <body>
+        <noscript>
+            <strong
+                >We're sorry but vue-r4-one doesn't work properly without JavaScript enabled. Please enable it to
+                continue.</strong
+            >
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+
+        <script>
+            const intervalHandle = window.setInterval(() => {
+                if (window.r4One) {
+                    window.clearInterval(intervalHandle);
+                    addPanel();
+                }
+            }, 1000);
+
+            function addPanel() {
+                const Vue = window.r4One.Vue;
+                const app = window.r4One.app;
+
+                Vue.component('dumb-button', {
+                    data: function() {
+                        return {
+                            count: 0
+                        };
+                    },
+                    render: function(h) {
+                        return h('div', [
+                            h(
+                                'button',
+                                {
+                                    on: {
+                                        click: () => this.count++
+                                    }
+                                },
+                                [h('span', this.count)]
+                            )
+                        ]);
+                    }
+                });
+
+                r4One.app.$store.dispatch('panels/addPanelItem', { value: { moduleName: 'dumb-button' } });
+            }
+            //Vue.component('frog', Frog);
+        </script>
+    </body>
 </html>
