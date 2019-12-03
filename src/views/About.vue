@@ -3,7 +3,7 @@
         <h1>This is an about page</h1>
 
         <div class="list" v-for="(item, index) in items" :key="`${item.moduleName}-${index}`">
-            <blank-panel :module-name="item.moduleName"></blank-panel>
+            <blank-panel :module-name="item.moduleName" :module-external="item.external"></blank-panel>
         </div>
     </div>
 </template>

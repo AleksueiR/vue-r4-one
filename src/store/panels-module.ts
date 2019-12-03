@@ -3,6 +3,7 @@ import { RootState } from './state';
 
 export interface PanelClass {
     moduleName: string;
+    external: boolean;
 }
 
 export interface PanelsState {

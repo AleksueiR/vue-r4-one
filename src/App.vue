@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
+            <router-link to="/home">Home</router-link> |
+            <router-link to="/">About</router-link>
         </div>
         <router-view />
     </div>
@@ -15,12 +15,32 @@ import { PanelClass } from '@/store/panels-module';
 
 const panelStore = namespace('panels');
 
-@Component
+import router from './router';
+import store from './store';
+
+/* import Cybertruck from '@/modules/Cybertruck.vue';
+Vue.component('cybertruck', Cybertruck);
+ */
+
+@Component /* ({
+    name: 'App',
+    router,
+    store
+}) */
 export default class App extends Vue {
     @panelStore.Action addPanelItem: (value: { value: PanelClass }) => Promise<void>;
 
-    created() {
-        this.addPanelItem({ value: { moduleName: 'cybertruck' } });
+    created(): void {
+        this.addPanelItem({ value: { moduleName: 'cybertruck', external: false } });
+    }
+
+    beforeMount(): void {
+        const externalModules = document.getElementById('app')!.getAttribute('data-modules');
+        if (!externalModules) {
+            return;
+        }
+
+        externalModules.split(',').forEach(name => this.addPanelItem({ value: { moduleName: name, external: true } }));
     }
 }
 </script>

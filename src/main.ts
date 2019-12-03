@@ -5,8 +5,8 @@ import store from './store';
 
 Vue.config.productionTip = false;
 
-import Cybertruck from '@/modules/Cybertruck.vue';
-Vue.component('cybertruck', Cybertruck);
+// import Cybertruck from '@/modules/Cybertruck.vue';
+// Vue.component('cybertruck', Cybertruck);
 
 const app = new Vue({
     router,
