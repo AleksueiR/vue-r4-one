@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="md:flex-1">
         <img src="https://i.imgur.com/uEZwmNi.png" />
     </div>
 </template>

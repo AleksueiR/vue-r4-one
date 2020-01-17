@@ -1,6 +1,6 @@
 <template>
-    <div id="app">
-        <div id="nav">
+    <div id="app" class="">
+        <div id="nav" class="sm:flex-1">
             <router-link to="/home">Home</router-link> |
             <router-link to="/">About</router-link>
         </div>
@@ -43,7 +43,16 @@ export default class App extends Vue {
         externalModules.split(',').forEach(name => this.addPanelItem({ value: { moduleName: name, external: true } }));
     }
 }
+// @import './styles.css';
 </script>
+
+<style lang="postcss">
+#app {
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+}
+</style>
 
 <style lang="scss">
 #app {
